@@ -1,28 +1,40 @@
-let LBCLogoImg;
+/*
+    To do!!
+    Make the bars animated as they rise up
+    Get better images and import them in 
+    Optimise further 
+    Add interactability
+    Add export to image functionality
+*/
 
-var xPos = 147;
-let data;
 
+var xPos = 147; //X pos offset
+let data; //JSON data file
+let LBCLogoImg; //LBC logo
+
+//Loads the images and data from github
 function preload(){
     LBCLogoImg = loadImage('https://play-lh.googleusercontent.com/tgWzW8P3uZNIqaloZNoy6IZBdcyKYbKXxwsnLePo4YuS-7oGkqaprIOQ28x_RFoaRbQ=s200');
+    data = loadJSON('https://raw.githubusercontent.com/17177/HousePointsSystem/main/data.json');
 }
 
 function setup() 
 {
-    frameRate(3);
 	createCanvas(600, 600);
     mainScreenDraw();
     noLoop();
+    print(data.houses[0].contrib[0].name); //Prints a test data point
+    
+    drawBars();
 }
 
 function draw()
 {
-    drawBars(random(70, 400), random(70, 400), random(70, 400), random(70, 400), random(70, 400));
+    
 }
 
-
-
 function mainScreenDraw(){
+    //Sets up the main background of the screen
     background(255);
     rectMode(CORNER).fill(0, 88, 124);
     rect(6, 5, 125.597, 584.629);
@@ -34,55 +46,34 @@ function mainScreenDraw(){
     textSize(35).fill(255);
     text(s, 14, 30, 160, 150);
 
-    image(LBCLogoImg, 0, 412, 138, 147);
+    image(LBCLogoImg, 10, 412, 120, 147);
 
     textSize(22);
     textAlign(CENTER);
-    text('Takahē', xPos, 523, 70, 523);
-    text('Tïeke', xPos+90, 523, 70, 523);
-    text('Tara Iti', xPos+90*2, 523, 70, 523);
-    text('Kea', xPos+90*3, 523, 70, 523);
-    text('Kōkako', xPos+90*4, 523, 70, 523);
+    for(i = 0; i < 5; i++){
+        text(data.houses[i].name, xPos+90*i, 523, 70, 523);
+    }
 }
 
-function drawBars(a, b, c, d, e){
+function drawBars(){
     mainScreenDraw();
     rectMode(CORNERS).noStroke();
 
-    let max = Math.ceil(Math.max(a, b, c, d, e)/20)*0;
+    let max = Math.max(data.houses[0].points, data.houses[1].points, data.houses[2].points, data.houses[3].points, data.houses[4].points);
+    print(max);
 
-    //Takahe
-    fill(234, 76, 74);
-    rect(xPos, 510, 217, 500-a);
-    circle(35+xPos, 500-a, 70);
-    fill(255);
-    text(Math.round(a), 35+xPos, 500-(a+40));
+    let min = Math.min(data.houses[0].points, data.houses[1].points, data.houses[2].points, data.houses[3].points, data.houses[4].points);
+    print(min);
 
-    //Tieke
-    fill(252, 145, 62);
-    rect(xPos+90, 510, 307, 500-b);
-    circle(35+xPos+90, 500-b, 70)
-    fill(255);
-    text(Math.round(b), 35+xPos+90, 500-(b+40));
+    for(i = 0; i < 5; i++){
+        print(data.houses[i].colour); //Prints the colour of the house
 
-    //Tara iti
-    fill(255, 200, 72);
-    rect(xPos+90*2, 510, 397, 500-c);
-    circle(35+xPos+90*2, 500-c, 70)
-    fill(255);
-    text(Math.round(c), 35+xPos+90*2, 500-(c+40));
+        fill(data.houses[i].colour);
+        rect(xPos+90*i, 510, (xPos+70)+90*i, 500 - (data.houses[i].points*(max/min)));
+        circle(35+xPos+90*i, 500- data.houses[i].points*(max/min), 70);
 
-    //Kia
-    fill(138, 200, 83);
-    rect(xPos+90*3, 510, 487, 500-d);
-    circle(35+xPos+90*3, 500-d, 70)
-    fill(255);
-    text(Math.round(d), 35+xPos+90*3, 500-(d+40));
-
-    //Kokako
-    fill(68, 124, 202);
-    rect(xPos+90*4, 510, 577, 500-e);
-    circle(35+xPos+90*4, 500-e, 70)
-    fill(255);
-    text(Math.round(e), 35+xPos+90*4, 500-(e+40));
+        //Draws text at top of bar
+        fill(255);
+        text(data.houses[i].points, 35+xPos+90*i, 500-(data.houses[i].points*(max/min)+40));
+    }
 }
