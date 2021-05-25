@@ -1,0 +1,9 @@
+{"houses":[
+    {"name":"Takahe", "points":20, "contrib":[
+        {"name":"Rob", "points":1, "event":"running"}
+    ]},
+    {"name":"Tieke", "points":40},
+    {"name":"Tara iti", "points":10},
+    {"name":"Kea", "points":5},
+    {"name":"Kokako", "points":45}
+]}
