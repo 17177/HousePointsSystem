@@ -1,9 +1,7 @@
 {"houses":[
-    {"name":"Takahe", "points":20, "contrib":[
-        {"name":"Rob", "points":1, "event":"running"}
-    ]},
-    {"name":"Tieke", "points":40},
-    {"name":"Tara iti", "points":10},
-    {"name":"Kea", "points":5},
-    {"name":"Kokako", "points":45}
+    {"name":"Takahē", "points":20, "colour":[234,76,74], "contrib":[{"name":"Rob", "points":1, "event":"running"}]},
+    {"name":"Tïeke", "points":40, "colour":[252, 145, 62]},
+    {"name":"Tara Iti", "points":10, "colour":[255, 200, 72]},
+    {"name":"Kea", "points":5, "colour":[138, 200, 83]},
+    {"name":"Kōkako", "points":45, "colour":[68, 124, 202]}
 ]}
