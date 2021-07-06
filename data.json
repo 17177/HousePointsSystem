@@ -2,7 +2,7 @@
   "houses": [
     {
       "name": "Takahē",
-      "points": 83,
+      "points": 97,
       "colour": [234, 76, 74],
       "contrib": [
         {
@@ -29,7 +29,7 @@
     },
     {
       "name": "Tïeke",
-      "points": 63,
+      "points": 75,
       "colour": [252, 145, 62],
       "contrib": [
         {
@@ -56,7 +56,7 @@
     },
     {
       "name": "Tara Iti",
-      "points": 77,
+      "points": 95,
       "colour": [255, 200, 72],
       "contrib": [
         {
@@ -83,7 +83,7 @@
     },
     {
       "name": "Kea",
-      "points": 74,
+      "points": 84,
       "colour": [138, 200, 83],
       "contrib": [
         {
@@ -110,7 +110,7 @@
     },
     {
       "name": "Kōkako",
-      "points": 57,
+      "points": 68,
       "colour": [68, 124, 202],
       "contrib": [
         {
