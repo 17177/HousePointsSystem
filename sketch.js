@@ -41,7 +41,8 @@ function preload() {
 
 function setup() {
   frameRate(60);
-  createCanvas(600, 600);
+  var myCanvas = createCanvas(600, 600);
+  myCanvas.parent('canvas');
   mainScreenDraw();
   barCalc();
 }
@@ -50,7 +51,6 @@ function draw() {
   h++;
   mainScreenDraw();
   drawBars();
-
 }
 
 function mainScreenDraw() {
@@ -65,6 +65,18 @@ function mainScreenDraw() {
   textFont("Calibri").textStyle(BOLD);
   textSize(35).fill(255);
   text(s, 14, 30, 160, 150);
+
+  let q = "Term 2 Week 10";
+  textAlign(LEFT);
+  textFont("Calibri").textStyle(BOLD);
+  textSize(25).fill(255);
+  text(q, 14, 200, 100, 150);
+
+  let r = "Made By Robin N";
+  textAlign(LEFT);
+  textFont("Calibri").textStyle(ITALIC);
+  textSize(8).fill(255);
+  text(r, 14, 580, 100, 150);
 
   image(LBCLogoImg, 10, 412, 120, 147);
 
@@ -100,53 +112,60 @@ function barCalc() {
 
 function drawBars() {
   if (frameCount < 500) {
-    
     if (frameCount < 100) {
-      drawBarPerHouse(0, map(frameCount, 0, 100, 500-barSize[0], 0));
-    } if (frameCount < 200) {
-      drawBarPerHouse(1, map(frameCount, 0, 200, 500-barSize[1], 0));
-    } if (frameCount < 300) {
-      drawBarPerHouse(2, map(frameCount, 0, 300, 500-barSize[2], 0));
-    } if (frameCount < 400) {
-      drawBarPerHouse(3, map(frameCount, 0, 400, 500-barSize[3], 0));
-    } if (frameCount < 500) {
-      drawBarPerHouse(4, map(frameCount, 0, 500, 500-barSize[4], 0));
+      drawBarPerHouse(0, map(frameCount, 0, 100, 500 - barSize[0], 0));
+    }
+    if (frameCount < 200) {
+      drawBarPerHouse(1, map(frameCount, 0, 200, 500 - barSize[1], 0));
+    }
+    if (frameCount < 300) {
+      drawBarPerHouse(2, map(frameCount, 0, 300, 500 - barSize[2], 0));
+    }
+    if (frameCount < 400) {
+      drawBarPerHouse(3, map(frameCount, 0, 400, 500 - barSize[3], 0));
+    }
+    if (frameCount < 500) {
+      drawBarPerHouse(4, map(frameCount, 0, 500, 500 - barSize[4], 0));
     }
   }
 
   if (frameCount > 100) {
     drawBarPerHouse(0, 0);
-  } if (frameCount > 200) {
+  }
+  if (frameCount > 200) {
     drawBarPerHouse(1, 0);
-  } if (frameCount > 300) {
+  }
+  if (frameCount > 300) {
     drawBarPerHouse(2, 0);
-  } if (frameCount > 400) {
+  }
+  if (frameCount > 400) {
     drawBarPerHouse(3, 0);
-  } if (frameCount > 500) {
+  }
+  if (frameCount > 500) {
     drawBarPerHouse(4, 0);
   }
 
   function drawBarPerHouse(i, z) {
     //Draw Bar rectangle
     rectMode(CORNERS).noStroke().fill(data.houses[i].colour);
-    rect(xPos + 90 * i, 510, xPos + 70 + 90 * i, (barSize[i] - 5) + z);
+    rect(xPos + 90 * i, 510, xPos + 70 + 90 * i, barSize[i] - 5 + z);
 
     //Draw bird image at top of the bar
-    image(birdImg[i], xPos + 90 * i, (barSize[i] -35) + z, 70, 70);
+    image(birdImg[i], xPos + 90 * i, barSize[i] - 35 + z, 70, 70);
 
     //Draws text at top of bar
-    if(z > 0){
+    if (z > 0) {
       fill(255).text(
         Math.floor(map(z, 500, 0, 0, data.houses[i].points)),
         35 + xPos + 90 * i,
-        (barSize[i] - 40) + z);
-    }
-    else{
+        barSize[i] - 40 + z
+      );
+    } else {
       fill(255).text(
         data.houses[i].points,
         35 + xPos + 90 * i,
-        (barSize[i] - 40) + z);
+        barSize[i] - 40 + z
+      );
     }
   }
 }
-
